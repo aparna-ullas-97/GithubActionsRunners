@@ -1,4 +1,4 @@
-name: Self-Hosted Windows Demo
+name: Self-Hosted Windows CI Demo
 
 on:
   push:
@@ -6,34 +6,47 @@ on:
   workflow_dispatch:
 
 jobs:
-  demo:
-    runs-on: [self-hosted, windows, x64]
-
+  info:
+    runs-on: [self-hosted, Windows, X64]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Show runner info
+      - name: Show machine info
         shell: powershell
         run: |
-          Write-Host "Runner machine: $env:COMPUTERNAME"
+          Write-Host "Machine: $env:COMPUTERNAME"
           Write-Host "User: $env:USERNAME"
           Write-Host "Workspace: $env:GITHUB_WORKSPACE"
-          Write-Host "Current path: $(Get-Location)"
-          Write-Host "GitHub ref: $env:GITHUB_REF"
-          Write-Host "GitHub sha: $env:GITHUB_SHA"
+          git --version
 
-      - name: Create demo output
+  build:
+    runs-on: [self-hosted, Windows, X64]
+    needs: info
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create build output
         shell: powershell
         run: |
           New-Item -ItemType Directory -Force -Path output | Out-Null
-          "Build ran on $(Get-Date)" | Out-File output\build.txt
-          "Machine: $env:COMPUTERNAME" | Add-Content output\build.txt
-          "Commit: $env:GITHUB_SHA" | Add-Content output\build.txt
+          "Hello from self-hosted runner" | Out-File output\build.txt
           Get-Content output\build.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: selfhosted-demo-output
+          name: build-output
           path: output/build.txt
+
+  deploy:
+    runs-on: [self-hosted, Windows, X64]
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fake local deploy
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path C:\demo-deploy | Out-Null
+          "Deployed on $(Get-Date)" | Out-File C:\demo-deploy\deploy.txt
+          Get-Content C:\demo-deploy\deploy.txt

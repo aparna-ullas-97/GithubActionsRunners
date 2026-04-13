@@ -43,7 +43,6 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v4
-
       - name: Fake local deploy
         shell: powershell
         run: |

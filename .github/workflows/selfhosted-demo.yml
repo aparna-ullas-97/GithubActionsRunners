@@ -1,0 +1,39 @@
+name: Self-Hosted Windows Demo
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  demo:
+    runs-on: [self-hosted, windows, x64]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show runner info
+        shell: powershell
+        run: |
+          Write-Host "Runner machine: $env:COMPUTERNAME"
+          Write-Host "User: $env:USERNAME"
+          Write-Host "Workspace: $env:GITHUB_WORKSPACE"
+          Write-Host "Current path: $(Get-Location)"
+          Write-Host "GitHub ref: $env:GITHUB_REF"
+          Write-Host "GitHub sha: $env:GITHUB_SHA"
+
+      - name: Create demo output
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path output | Out-Null
+          "Build ran on $(Get-Date)" | Out-File output\build.txt
+          "Machine: $env:COMPUTERNAME" | Add-Content output\build.txt
+          "Commit: $env:GITHUB_SHA" | Add-Content output\build.txt
+          Get-Content output\build.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: selfhosted-demo-output
+          path: output/build.txt

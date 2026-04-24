@@ -1,0 +1,18 @@
+[Fri 04/24/2026  9:26:10.98] --------whoami-------- 
+izd01\20250
+[Fri 04/24/2026  9:26:11.28] --------whoami-------- 
+[Fri 04/24/2026  9:26:11.28] Waiting for Runner.Listener.exe (22360) to complete 
+[Fri 04/24/2026  9:26:16.91] Process 22360 finished running 
+[Fri 04/24/2026  9:26:16.91] Sleep 1 more second to make sure process exited 
+[Fri 04/24/2026  9:26:18.04] Re-organize folders 
+[Fri 04/24/2026  9:26:18.35] move "C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\bin" "C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\bin.2.333.1" 
+        1 dir(s) moved.
+[Fri 04/24/2026  9:26:18.50] move "C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\externals" "C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\externals.2.333.1" 
+        1 dir(s) moved.
+[Fri 04/24/2026  9:26:18.51] Create junction bin folder 
+Junction created for C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\bin <<===>> C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\bin.2.334.0
+[Fri 04/24/2026  9:26:18.52] Create junction externals folder 
+Junction created for C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\externals <<===>> C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\externals.2.334.0
+[Fri 04/24/2026  9:26:18.52] Update succeed 
+[Fri 04/24/2026  9:26:18.53] update.finished file creation succeed 
+[Fri 04/24/2026  9:26:18.53] Rename "C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\_diag\SelfUpdate-20260424-072610.log" to be "C:\Users\20250\Desktop\GithubActionsRunners\actions-runner\_diag\SelfUpdate-20260424-072610.log.succeed" 
